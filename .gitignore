@@ -40,7 +40,7 @@ libopencm3/
 *.lst
 /stm32f746xx.h
 LatheN.gpdsc
-
+Drivers/CMSIS/Include/*
 ~$LatheCPP7N.xlsx
 LatheCPP7H.gpdsc
 *.xlsx
