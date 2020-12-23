@@ -28,10 +28,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
-#include <stdio.h>
-ssize_t _write (int fd, const char* buf, size_t nbyte);
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,14 +55,6 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
 void mainLoop(void);
-ssize_t _write (int fd, const char* buf, size_t nbyte);
-void _init(void);
-caddr_t _sbrk(int incr);
-void _close(void);
-int _fstat(void);
-int _isatty(void);
-void _lseek(void);
-void _read(void);
 
 /* USER CODE END PFP */
 
@@ -209,54 +197,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void _init(void)
-{
-}
-
-caddr_t _sbrk(int incr)
-{
- extern char _end;		/* Defined by the linker */
- static char *heap_end;
- char *prev_heap_end;
- char *sp = (char *)&sp;
-
- if (heap_end == 0)
- {
-  heap_end = &_end;
- }
- prev_heap_end = heap_end;
- heap_end += incr;
- if (heap_end > sp)
- {
-  _write (1, "Heap and stack collision\n", 25);
-//  errno = ENOMEM;
-  return (caddr_t)-1;
- }
- return (caddr_t) prev_heap_end;
-}
-
-void _close(void)
-{
-}
-
-int _fstat(void)
-{
- return(0);
-}
-
-int _isatty(void)
-{
- return(1);
-}
-
-void _lseek(void)
-{
-}
-
-void _read(void)
-{
-}
 
 /* USER CODE END 4 */
 
