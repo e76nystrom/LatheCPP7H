@@ -24,7 +24,8 @@
 .pydevproject
 .settings/
 .vs/
-cscope*
+cscope.files
+cscope.out
 Debug/
 Middlewares/
 Old/
@@ -44,3 +45,4 @@ Drivers/CMSIS/Include/*
 ~$LatheCPP7N.xlsx
 LatheCPP7H.gpdsc
 *.xlsx
+STM32CubeIDE/*

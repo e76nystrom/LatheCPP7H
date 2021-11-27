@@ -75,12 +75,12 @@
 		<link>
 			<name>include</name>
 			<type>2</type>
-			<location>C:/Development/EclipseCPP/LatheCPP/include</location>
+			<locationURI>WORKSPACE_LOC/LatheCPP/include</locationURI>
 		</link>
 		<link>
 			<name>lathe_src</name>
 			<type>2</type>
-			<location>C:/Development/EclipseCPP/LatheCPP/lathe_src</location>
+			<locationURI>WORKSPACE_LOC/LatheCPP/lathe_src</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
