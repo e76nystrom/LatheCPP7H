@@ -18,7 +18,6 @@
 *.save
 *.sdf
 *.sln
-*.txt
 *.zip
 *~
 .pydevproject
@@ -46,3 +45,4 @@ Drivers/CMSIS/Include/*
 LatheCPP7H.gpdsc
 *.xlsx
 STM32CubeIDE/*
+cmake-build-debug/*

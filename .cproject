@@ -106,6 +106,7 @@
 									<listOptionValue builtIn="false" value="STM32H7=1"/>
 									<listOptionValue builtIn="false" value="STM32H743xx"/>
 									<listOptionValue builtIn="false" value="NUCLEOH743"/>
+									<listOptionValue builtIn="false" value="LATHE_CPP"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.other.144037487" name="Other compiler flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.other" useByScannerDiscovery="true" value="-std=c++1z" valueType="string"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.asmlisting.781542064" name="Generate assembler listing (-Wa,-adhlns=&quot;$@.lst&quot;)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.asmlisting" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -199,7 +200,8 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.printsize.1423831672.753933401" name="Print size" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.printsize.1423831672"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.709499464.779836313" name="FPU Type" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.arm.target.fpu.unit.709499464"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.id.1171026898.1617012921" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.id.1171026898"/>
-							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createlisting.841848181" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createlisting"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createlisting.841848181" name="Create extended listing" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.addtools.createlisting"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform" isAbstract="false" osList="all" superClass="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.328723698" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1039970228">
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1522300657" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
