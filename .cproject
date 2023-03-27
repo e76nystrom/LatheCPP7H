@@ -172,7 +172,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Drivers/STM32H7xx_HAL_Driver/Src"/>
-						<entry excluding="sysmem.c|syscalls.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Src"/>
+						<entry excluding="syscalls.c|sysmem.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Src"/>
 						<entry excluding="handler.S" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="lathe_src"/>
 					</sourceEntries>
 				</configuration>
@@ -322,9 +322,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Drivers/CMSIS/RTOS|TrueSTUDIO|src|Drivers/STM32F7xx_HAL_Driver/Src|Drivers/CMSIS/Device/ST/STM32F7xx/Source|Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
-						<entry excluding="sysmem.c|syscalls.c|Drivers/CMSIS/RTOS|TrueSTUDIO|src|Drivers/STM32F7xx_HAL_Driver/Src|Drivers/CMSIS/Device/ST/STM32F7xx/Source|Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
-						<entry excluding="system_stm32f7xx.c|interrupts.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="TrueSTUDIO|Drivers/CMSIS/Device/ST/STM32F7xx/Source|Src|Drivers/CMSIS/RTOS|Drivers/STM32F7xx_HAL_Driver/Src|Drivers/CMSIS/Device/ST/STM32F7xx/Source/Templates" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
