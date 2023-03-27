@@ -155,6 +155,10 @@ void Error_Handler(void);
 #define Led3_GPIO_Port GPIOB
 #define Pin16_Pin GPIO_PIN_15
 #define Pin16_GPIO_Port GPIOB
+#define Usart3Tx_Pin GPIO_PIN_8
+#define Usart3Tx_GPIO_Port GPIOD
+#define Usart3Rx_Pin GPIO_PIN_9
+#define Usart3Rx_GPIO_Port GPIOD
 #define Dbg1_Pin GPIO_PIN_10
 #define Dbg1_GPIO_Port GPIOD
 #define Pin10_Pin GPIO_PIN_11
@@ -197,14 +201,14 @@ void Error_Handler(void);
 #define Step2b_GPIO_Port GPIOA
 #define Dbg4_Pin GPIO_PIN_9
 #define Dbg4_GPIO_Port GPIOA
-#define Usart3Tx_Pin GPIO_PIN_10
-#define Usart3Tx_GPIO_Port GPIOC
-#define Usart3Rx_Pin GPIO_PIN_11
-#define Usart3Rx_GPIO_Port GPIOC
+#define Uart5Tx_Pin GPIO_PIN_12
+#define Uart5Tx_GPIO_Port GPIOC
 #define DbgA10_Pin GPIO_PIN_0
 #define DbgA10_GPIO_Port GPIOD
 #define DbgA9_Pin GPIO_PIN_1
 #define DbgA9_GPIO_Port GPIOD
+#define Uart5Rx_Pin GPIO_PIN_2
+#define Uart5Rx_GPIO_Port GPIOD
 #define PinA8_Pin GPIO_PIN_3
 #define PinA8_GPIO_Port GPIOD
 #define PinA7_Pin GPIO_PIN_4
@@ -236,6 +240,7 @@ void Error_Handler(void);
 #define Index_EXTI_IRQn EXTI0_IRQn
 #define Led2_Pin GPIO_PIN_1
 #define Led2_GPIO_Port GPIOE
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
