@@ -78,8 +78,10 @@ void Error_Handler(void);
 #define DbgA0_GPIO_Port GPIOF
 #define ZFlag_Pin GPIO_PIN_3
 #define ZFlag_GPIO_Port GPIOF
+#define ZFlag_EXTI_IRQn EXTI3_IRQn
 #define XFlag_Pin GPIO_PIN_4
 #define XFlag_GPIO_Port GPIOF
+#define XFlag_EXTI_IRQn EXTI4_IRQn
 #define Dir3_Pin GPIO_PIN_5
 #define Dir3_GPIO_Port GPIOF
 #define Uart7Rx_Pin GPIO_PIN_6

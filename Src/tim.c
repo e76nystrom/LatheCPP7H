@@ -539,6 +539,10 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
   /* USER CODE END TIM1_MspInit 0 */
     /* TIM1 clock enable */
     __HAL_RCC_TIM1_CLK_ENABLE();
+
+    /* TIM1 interrupt Init */
+    HAL_NVIC_SetPriority(TIM1_UP_IRQn, 1, 0);
+    HAL_NVIC_EnableIRQ(TIM1_UP_IRQn);
   /* USER CODE BEGIN TIM1_MspInit 1 */
 
   /* USER CODE END TIM1_MspInit 1 */
@@ -552,7 +556,7 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
     __HAL_RCC_TIM2_CLK_ENABLE();
 
     /* TIM2 interrupt Init */
-    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM2_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USER CODE BEGIN TIM2_MspInit 1 */
 
@@ -589,7 +593,7 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
     __HAL_RCC_TIM5_CLK_ENABLE();
 
     /* TIM5 interrupt Init */
-    HAL_NVIC_SetPriority(TIM5_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM5_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(TIM5_IRQn);
   /* USER CODE BEGIN TIM5_MspInit 1 */
 
@@ -604,9 +608,9 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
     __HAL_RCC_TIM8_CLK_ENABLE();
 
     /* TIM8 interrupt Init */
-    HAL_NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(TIM8_BRK_TIM12_IRQn);
-    HAL_NVIC_SetPriority(TIM8_UP_TIM13_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM8_UP_TIM13_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(TIM8_UP_TIM13_IRQn);
   /* USER CODE BEGIN TIM8_MspInit 1 */
 
@@ -621,7 +625,7 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
     __HAL_RCC_TIM12_CLK_ENABLE();
 
     /* TIM12 interrupt Init */
-    HAL_NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(TIM8_BRK_TIM12_IRQn);
   /* USER CODE BEGIN TIM12_MspInit 1 */
 
@@ -653,7 +657,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     __HAL_RCC_TIM15_CLK_ENABLE();
 
     /* TIM15 interrupt Init */
-    HAL_NVIC_SetPriority(TIM15_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM15_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(TIM15_IRQn);
   /* USER CODE BEGIN TIM15_MspInit 1 */
 
@@ -668,7 +672,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     __HAL_RCC_TIM16_CLK_ENABLE();
 
     /* TIM16 interrupt Init */
-    HAL_NVIC_SetPriority(TIM16_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM16_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(TIM16_IRQn);
   /* USER CODE BEGIN TIM16_MspInit 1 */
 
@@ -694,7 +698,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     HAL_GPIO_Init(Encoder_GPIO_Port, &GPIO_InitStruct);
 
     /* TIM17 interrupt Init */
-    HAL_NVIC_SetPriority(TIM17_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(TIM17_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(TIM17_IRQn);
   /* USER CODE BEGIN TIM17_MspInit 1 */
 
@@ -864,6 +868,9 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* tim_pwmHandle)
   /* USER CODE END TIM1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_TIM1_CLK_DISABLE();
+
+    /* TIM1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(TIM1_UP_IRQn);
   /* USER CODE BEGIN TIM1_MspDeInit 1 */
 
   /* USER CODE END TIM1_MspDeInit 1 */
