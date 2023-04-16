@@ -12,6 +12,7 @@ set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(CPU cortex-m7)
+set(USB on)
 
 set(CMAKE_VERBOSE_MAKEFILE on)
 set(INTERMEDIATE off)
@@ -54,58 +55,79 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(${includes})
-include_directories(Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32h7xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include)
+include_directories(Inc
+	Drivers/STM32H7xx_HAL_Driver/Inc
+	Drivers/STM32h7xx_HAL_Driver/Inc/Legacy
+	Drivers/CMSIS/Device/ST/STM32H7xx/Include
+	Drivers/CMSIS/Include
+)
+
 include_directories(../LatheCPP/include)
-#include_directories(../tinyusb/examples/device/cdc_msc/src
-#../tinyusb/hw
-#../tinyusb//hw/bsp/stm32h7/boards/stm32h743nucleo
-#../tinyusb/src/class/audio
-#../tinyusb/src/class/cdc
-#../tinyusb/src/class/dfu
-#../tinyusb/src/class/hid
-#../tinyusb/src/class/midi
-#../tinyusb/src/class/msc
-#../tinyusb/src/class/net
-#../tinyusb/src/class/usbtmc
-#../tinyusb/src/class/vendor
-#../tinyusb/src/class/video
-#../tinyusb/src/common
-#../tinyusb/src/device
-#../tinyusb/src/portable/synopsys/dwc2
-#../tinyusb/src
-#)
+
+if (${USB})
+
+add_definitions(-DUSB)
+
+include_directories(
+        ../USBx/hw
+        ../USBx/hw/bsp/stm32h7
+        ../USBx/hw/bsp/stm32h7/boards/stm32h743nucleo
+        ../USBx/project
+        ../USBx/src
+        ../USBx/hw/bsp
+)
+
+endif ()
 
 add_definitions(${defines})
 add_definitions(-DSTM32H7 -DSTM32H743xx -DNUCLEOH743 -DLATHE_CPP -DCLION)
 
-file(GLOB_RECURSE SOURCES "Startup/*.*" "Src/*.*" "Drivers/*.*")
-set(SOURCES1 ../LatheCPP/lathe_src/arc.cpp ../LatheCPP/lathe_src/encoder.cpp ../LatheCPP/lathe_src/getSP.s ../LatheCPP/lathe_src/i2cx.cpp ../LatheCPP/lathe_src/interrupts.cpp ../LatheCPP/lathe_src/lathe.cpp ../LatheCPP/lathe_src/latheX.cpp ../LatheCPP/lathe_src/lcd.cpp ../LatheCPP/lathe_src/lclcmd.cpp ../LatheCPP/lathe_src/lclcmdX.cpp ../LatheCPP/lathe_src/mainLoop.cpp ../LatheCPP/lathe_src/pid.cpp ../LatheCPP/lathe_src/pidAutoTune.cpp ../LatheCPP/lathe_src/remcmd.cpp ../LatheCPP/lathe_src/remfunc.cpp ../LatheCPP/lathe_src/remvar.cpp ../LatheCPP/lathe_src/serialio.cpp ../LatheCPP/lathe_src/spix.cpp ../LatheCPP/lathe_src/stm32Info.cpp ../LatheCPP/lathe_src/xcontrol.cpp ../LatheCPP/lathe_src/zcontrol.cpp)
+file(GLOB_RECURSE SOURCES
+	"Startup/*.*"
+	"Src/*.*"
+	"Drivers/*.*"
+	)
 
-#../tinyusb/hw/bsp/board.c
+set(SOURCES1
+	../LatheCPP/lathe_src/arc.cpp
+	../LatheCPP/lathe_src/encoder.cpp
+	../LatheCPP/lathe_src/getSP.s
+	../LatheCPP/lathe_src/i2cx.cpp
+	../LatheCPP/lathe_src/interrupts.cpp
+	../LatheCPP/lathe_src/lathe.cpp
+	../LatheCPP/lathe_src/latheX.cpp
+	../LatheCPP/lathe_src/lcd.cpp
+	../LatheCPP/lathe_src/lclcmd.cpp
+	../LatheCPP/lathe_src/lclcmdX.cpp
+	../LatheCPP/lathe_src/mainLoop.cpp
+	../LatheCPP/lathe_src/pid.cpp
+	../LatheCPP/lathe_src/pidAutoTune.cpp
+	../LatheCPP/lathe_src/remcmd.cpp
+	../LatheCPP/lathe_src/remfunc.cpp
+	../LatheCPP/lathe_src/remvar.cpp
+	../LatheCPP/lathe_src/serialio.cpp
+	../LatheCPP/lathe_src/spix.cpp
+	../LatheCPP/lathe_src/stm32Info.cpp
+	../LatheCPP/lathe_src/xcontrol.cpp
+	../LatheCPP/lathe_src/zcontrol.cpp
+	)
 
-set(SOURCES2 ../tinyusb/examples/device/cdc_msc/src/main.c
-../tinyusb/examples/device/cdc_msc/src/msc_disk.c
-../tinyusb/examples/device/cdc_msc/src/usb_descriptors.c
-../tinyusb/hw/bsp/stm32h7/family.c
-../tinyusb/src/class/audio/audio_device.c
-../tinyusb/src/class/cdc/cdc_device.c
-../tinyusb/src/class/dfu/dfu_device.c
-../tinyusb/src/class/dfu/dfu_rt_device.c
-../tinyusb/src/class/hid/hid_device.c
-../tinyusb/src/class/midi/midi_device.c
-../tinyusb/src/class/msc/msc_device.c
-../tinyusb/src/class/net/ecm_rndis_device.c
-../tinyusb/src/class/net/ncm_device.c
-../tinyusb/src/class/usbtmc/usbtmc_device.c
-../tinyusb/src/class/vendor/vendor_device.c
-../tinyusb/src/class/video/video_device.c
-../tinyusb/src/common/tusb_fifo.c
-../tinyusb/src/device/usbd.c
-../tinyusb/src/device/usbd_control.c
-../tinyusb/src/portable/synopsys/dwc2/dcd_dwc2.c
-../tinyusb/src/tusb.c
-) 
+if (${USB})
+
+set(SOURCES2
+        ../USBx/project/usb_descriptors.c
+        ../USBx/project/trace.c
+        ../USBx/src/tusb.c
+        ../USBx/src/common/tusb_fifo.c
+        ../USBx/src/class/cdc/cdc_device.c
+        ../USBx/src/device/usbd.c
+        ../USBx/src/device/usbd_control.c
+        ../USBx/src/portable/synopsys/dwc2/dcd_dwc2.c
+)
+
+else ()
+set(SOURCES2)
+endif ()
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H743ZITX_FLASH.ld)
 
@@ -114,7 +136,7 @@ add_link_options(-Wl,--no-warn-rwx-segments)
 add_link_options(-mcpu=${CPU} -mthumb -mthumb-interwork)
 add_link_options(-T $${LINKER_SCRIPT})
 
-add_executable($${PROJECT_NAME}.elf $${SOURCES} ${SOURCES1} $${LINKER_SCRIPT})
+add_executable($${PROJECT_NAME}.elf $${SOURCES} $${SOURCES1} $${SOURCES2} $${LINKER_SCRIPT})
 
 if(INTERMEDIATE)
 foreach(SRC_ IN LISTS SOURCES1)

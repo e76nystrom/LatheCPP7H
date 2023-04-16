@@ -28,6 +28,14 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#if defined(USB)
+#include "bsp/board.h"
+#include "tusb_config.h"
+#include "device/usbd.h"
+#include "trace.h"
+#endif  /* USB */
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,12 +62,20 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
-void mainLoop(void);
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+#if defined(USB)
+void usbClock_Config(void);
+void usbInit(void);
+
+int isrStart;
+int isrEnd;
+#endif  /* USB */
+
+void mainLoop(void);
 
 /* USER CODE END 0 */
 
@@ -92,7 +108,9 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+#if defined(USB)
+ usbClock_Config();
+#endif  /* USB */
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -115,6 +133,13 @@ int main(void)
   MX_IWDG1_Init();
   MX_UART5_Init();
   /* USER CODE BEGIN 2 */
+
+#if defined(USB)
+
+ usbInit();
+ __HAL_RCC_USB2_OTG_FS_CLK_ENABLE();
+
+#endif  /* USB */
 
   mainLoop();
 
@@ -164,7 +189,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 120;
+  RCC_OscInitStruct.PLL.PLLN = 100;
   RCC_OscInitStruct.PLL.PLLP = 2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
@@ -189,13 +214,48 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
   RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
 /* USER CODE BEGIN 4 */
+
+#if defined(USB)
+
+void usbClock_Config(void)
+{
+ RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
+ PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USB;
+ PeriphClkInitStruct.PLL3.PLL3M = 1;
+ PeriphClkInitStruct.PLL3.PLL3N = 24;
+ PeriphClkInitStruct.PLL3.PLL3P = 2;
+ PeriphClkInitStruct.PLL3.PLL3Q = 4;
+ PeriphClkInitStruct.PLL3.PLL3R = 2;
+ PeriphClkInitStruct.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_3;
+ PeriphClkInitStruct.PLL3.PLL3FRACN = 0;
+ PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_PLL3;
+
+ if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK) {
+  Error_Handler();
+ }
+}
+
+void usbInit(void)
+{
+ GPIO_InitTypeDef GPIO_InitStruct;
+
+ GPIO_InitStruct.Pin = USB_DM_Pin | USB_DP_Pin;
+ GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+ GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ GPIO_InitStruct.Pull = GPIO_NOPULL;
+ GPIO_InitStruct.Alternate = GPIO_AF10_OTG2_HS;
+ HAL_GPIO_Init(USB_DM_GPIO_Port, &GPIO_InitStruct);
+}
+
+#endif  /* USB */
 
 /* USER CODE END 4 */
 

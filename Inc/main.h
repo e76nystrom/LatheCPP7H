@@ -203,6 +203,10 @@ void Error_Handler(void);
 #define Step2b_GPIO_Port GPIOA
 #define Dbg4_Pin GPIO_PIN_9
 #define Dbg4_GPIO_Port GPIOA
+#define USB_DM_Pin GPIO_PIN_11
+#define USB_DM_GPIO_Port GPIOA
+#define USB_DP_Pin GPIO_PIN_12
+#define USB_DP_GPIO_Port GPIOA
 #define Uart5Tx_Pin GPIO_PIN_12
 #define Uart5Tx_GPIO_Port GPIOC
 #define DbgA10_Pin GPIO_PIN_0

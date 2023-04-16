@@ -199,4 +199,14 @@ void SysTick_Handler(void)
 
 /* USER CODE BEGIN 1 */
 
+#if defined(USB)
+#include "device/dcd.h"
+#include "device/usbd.h"
+
+void OTG_FS_IRQHandler(void)
+{
+ tud_int_handler(0);
+}
+#endif  /* USB */
+
 /* USER CODE END 1 */
