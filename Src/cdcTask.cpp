@@ -5,9 +5,48 @@
 // echo to either Serial0 or Serial1
 // with Serial0 as all lower case, Serial1 as all upper case
 
-#include <ctype.h>
 #include "class/cdc/cdc_device.h"
+#include "config.h"
+#include "serialio.h"
+#include "remcmd.h"
 
+#if 1
+
+void cdc_task()
+{
+ if (tud_cdc_n_available(REM_USB))
+ {
+  int count = remCtl.rx_count;
+  char *buf = remCtl.rx_buffer;
+  int rxCount = (int) tud_cdc_n_read(REM_USB, buf + count,
+                                     sizeof(remCtl.rx_buffer) - count);
+  if (rxCount != 0)
+  {
+   //printf("cdc_task count %d rxCount %d\n", count, rxCount);
+   //prtbuf((unsigned char *) buf + count, rxCount);
+   rxCount += count;
+   remCtl.rx_count = rxCount;
+   //printf("%02x\n", buf[rxCount - 1]);
+   //fflush(stdout);
+   //flushBuf();
+   if (buf[rxCount - 1] == '\r')
+   {
+    remCtl.rx_emp = 0;
+    remCtl.tx_fil = 0;
+    remCtl.tx_count = 0;
+    remcmd();
+    //prtbuf((unsigned char *) remCtl.tx_buffer, remCtl.tx_count);
+    //fflush(stdout);
+    //flushBuf();
+    tud_cdc_n_write(REM_USB, remCtl.tx_buffer, remCtl.tx_count);
+    tud_cdc_n_write_flush(REM_USB);
+    remCtl.rx_count = 0;
+   }
+  }
+ }
+}
+
+#else
 static void echo_serial_port(uint8_t itf, uint8_t buf[], uint32_t count)
 {
  uint8_t const case_diff = 'a' - 'A';
@@ -56,3 +95,4 @@ void cdc_task(void)
   }
  }
 }
+#endif

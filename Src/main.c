@@ -79,6 +79,8 @@ void mainLoop(void);
 
 /* USER CODE END 0 */
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
 /**
   * @brief  The application entry point.
   * @retval int
@@ -155,6 +157,7 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
+#pragma clang diagnostic pop
 
 /**
   * @brief System Clock Configuration
