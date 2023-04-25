@@ -23,7 +23,7 @@ void cdc_task()
   if (rxCount != 0)
   {
    //printf("cdc_task count %d rxCount %d\n", count, rxCount);
-   //prtbuf((unsigned char *) buf + count, rxCount);
+   //prtBuf((unsigned char *) buf + count, rxCount);
    rxCount += count;
    remCtl.rx_count = rxCount;
    //printf("%02x\n", buf[rxCount - 1]);
@@ -34,8 +34,8 @@ void cdc_task()
     remCtl.rx_emp = 0;
     remCtl.tx_fil = 0;
     remCtl.tx_count = 0;
-    remcmd();
-    //prtbuf((unsigned char *) remCtl.tx_buffer, remCtl.tx_count);
+    remCmd();
+    //prtBuf((unsigned char *) remCtl.tx_buffer, remCtl.tx_count);
     //fflush(stdout);
     //flushBuf();
     tud_cdc_n_write(REM_USB, remCtl.tx_buffer, remCtl.tx_count);
