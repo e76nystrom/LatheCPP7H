@@ -110,10 +110,8 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PFPin PFPin PFPin PFPin
-                           PFPin PFPin */
-  GPIO_InitStruct.Pin = ZFlag_Pin|XFlag_Pin|ZA_Pin|ZB_Pin
-                          |XA_Pin|XB_Pin;
+  /*Configure GPIO pins : PFPin PFPin */
+  GPIO_InitStruct.Pin = ZFlag_Pin|XFlag_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
@@ -152,6 +150,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : PFPin PFPin PFPin PFPin */
+  GPIO_InitStruct.Pin = ZA_Pin|ZB_Pin|XA_Pin|XB_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PGPin PGPin PGPin PGPin
                            PGPin PGPin PGPin */
   GPIO_InitStruct.Pin = DbgA4_Pin|DbgA3_Pin|Dbg0_Pin|DbgA12_Pin
@@ -184,7 +188,7 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : PGPin PGPin PGPin PGPin */
   GPIO_InitStruct.Pin = JogA1_Pin|JogB1_Pin|JogA2_Pin|JogB2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
