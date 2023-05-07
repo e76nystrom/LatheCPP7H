@@ -130,6 +130,7 @@ int main(void)
 #if defined(USB)
 
  usbInit();
+ HAL_PWREx_EnableUSBVoltageDetector();
  __HAL_RCC_USB2_OTG_FS_CLK_ENABLE();
 
 #endif  /* USB */
